@@ -20,6 +20,10 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @Column(name = "code", nullable = false, unique = true)
     private String code;
 
@@ -129,5 +133,13 @@ public class Coupon {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public User getUser(){
+        return this.user;
     }
 }

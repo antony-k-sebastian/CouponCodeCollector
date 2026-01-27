@@ -42,6 +42,12 @@ public class CouponController {
         return new ResponseEntity<>(coupons, HttpStatus.OK);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<List<CouponResponse>> getMyCoupons(){
+        List<CouponResponse> coupons = couponService.getMyCoupons();
+        return new ResponseEntity<>(coupons, HttpStatus.OK);
+    }
+
     @PostMapping("/{id}")
     public ResponseEntity<CouponResponse> updateCoupon(
             @PathVariable Long id,
