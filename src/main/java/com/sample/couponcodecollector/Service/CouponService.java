@@ -32,9 +32,9 @@ public class CouponService {
     public CouponResponse saveCoupon(CreateCouponRequest couponRequestDTO){
         Coupon coupon = couponMapper.toEntity(couponRequestDTO);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User currentUser = userRepository.findByUsername(username)
-        .orElseThrow(() ->new RuntimeException("User not found"));
+        String email = authentication.getName();
+        User currentUser = userRepository.findByEmail(email)
+        .orElseThrow(() ->new RuntimeException("User not found" + email));
         coupon.setUser(currentUser);
         Coupon saved =  couponRepository.save(coupon);
         return couponMapper.toDTO(saved);
