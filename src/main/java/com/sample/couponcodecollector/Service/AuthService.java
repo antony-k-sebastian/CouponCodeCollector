@@ -41,7 +41,7 @@ public class AuthService {
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         if(passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())){
-            String token = jwtUtil.generateToken(user.getUsername());
+            String token = jwtUtil.generateToken(user.getEmail());
             LoginResponse loginResponse = userMapper.toLoginResponse(token);
             return loginResponse;
         } else{
