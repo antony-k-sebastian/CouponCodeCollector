@@ -58,8 +58,8 @@ public class CouponService {
 
     public List<CouponResponse> getMyCoupons(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User currentUser = userRepository.findByUsername(username)
+        String email = authentication.getName();
+        User currentUser = userRepository.findByEmail(email)
         .orElseThrow(() ->new RuntimeException("User not found"));
 
         List<Coupon> coupons = couponRepository.findByUser(currentUser);
